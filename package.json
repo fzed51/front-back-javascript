@@ -6,6 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "ft": "yarn workspace front"
+    "ft": "yarn workspace front",
+    "bk": "yarn workspace back"
   }
 }
