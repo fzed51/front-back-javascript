@@ -1,15 +1,17 @@
 {
   "name": "front",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build --mode productoin",
-    "lint": "eslint . -c .eslintrc.cjs --ext .ts,.tsx --report-unused-disable-directives --no-warn-ignored",
-    "preview": "vite preview",
+    "lint": "eslint . -c .eslintrc.cjs --ext .ts,.tsx --report-unused-disable-directives --no-warn-ignored --fix",
     "format": "prettier --write ./src",
-    "test": "vitest"
+    "test": "vitest",
+    "test:w": "vitest --watch",
+    "test:c": "vitest --coverage"
   },
   "dependencies": {
     "react": "18.3.1",
