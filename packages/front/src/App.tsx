@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import ky from "ky";
+import { ping } from "./api";
 
 function App() {
   useEffect(()=>{
     ( async () => {
-      const rep = await ky.get("http://localhost:3000/ping")
+      const rep = await ping()
       console.log(rep)
     } )()
   },[]);
