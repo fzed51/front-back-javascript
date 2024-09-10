@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../data/db.sqlite"
+}
+
+model temp_action {
+  id        String @id @default(uuid())
+  ref       String
+  data      String
+  expire_at DateTime
+}
