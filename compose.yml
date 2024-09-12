@@ -8,13 +8,14 @@ services:
   back:
     build:
       context: ./packages/back
-      target: dev
+      target: test
       dockerfile: Dockerfile
     container_name: back
     ports:
       - '3000:3000'
     volumes:
-      - ./pacakges/back/src:/app/src
+      - ./packages/back/src:/app/src
+      - ./packages/back/data:/app/data
     networks:
       - localNw
 
@@ -29,8 +30,8 @@ services:
     ports:
       - '8080:8080'
     volumes:
-      - ./pacakges/front/src:/app/src
-      - ./pacakges/front/public:/app/public
+      - ./packages/front/src:/app/src
+      - ./packages/front/public:/app/public
     networks:
       - localNw
 

@@ -1,20 +1,36 @@
 ARG NODE_VERSION=20
 
-FROM node:${NODE_VERSION}-alpine as base
+FROM node:${NODE_VERSION}-alpine AS base
 WORKDIR /app
 
-FROM base as initpord
+FROM base AS initpord
+ENV NODE_ENV production
 COPY package.json .
 RUN npm install --omit=dev
 
-FROM initpord as init
+FROM base AS initdev
+ENV NODE_ENV development
+COPY package.json .
 RUN npm install
 
-FROM init as build
-ENV NODE_ENV production
+FROM initdev AS build
 COPY . .
 RUN npm run prisma:g
 RUN npm run build
+
+FROM initdev AS dev
+COPY . .
+RUN npm run prisma:g
+CMD ["npm", "run", "dev"]
+
+FROM node:${NODE_VERSION}-alpine AS test
+WORKDIR /app
+COPY package.json .
+RUN npm install
+COPY . .
+RUN npm run prisma:g
+EXPOSE 3000
+CMD ["npm", "run", "dev"]
 
 FROM initpord
 COPY --from=build /app/dist /app/dist
