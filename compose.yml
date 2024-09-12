@@ -1,0 +1,36 @@
+networks:
+  localNw:
+    driver: bridge
+
+
+services:
+
+  back:
+    build:
+      context: ./packages/back
+      target: dev
+      dockerfile: Dockerfile
+    container_name: back
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./pacakges/back/src:/app/src
+    networks:
+      - localNw
+
+  front:
+    build:
+      context: ./packages\front
+      target: dev
+      dockerfile: Dockerfile
+    container_name: front
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./pacakges/front/src:/app/src
+      - ./pacakges/front/public:/app/public
+    networks:
+      - localNw
+
