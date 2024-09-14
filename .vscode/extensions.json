@@ -2,6 +2,7 @@
   "recommendations": [
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "codeandstuff.package-json-upgrade"
+    "codeandstuff.package-json-upgrade",
+    "prisma.prisma"
   ]
 }
