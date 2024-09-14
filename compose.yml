@@ -8,7 +8,7 @@ services:
   back:
     build:
       context: ./packages/back
-      target: test
+      target: dev
       dockerfile: Dockerfile
     container_name: back
     ports:
