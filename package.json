@@ -7,6 +7,7 @@
   ],
   "scripts": {
     "ft": "yarn workspace front",
-    "bk": "yarn workspace back"
+    "bk": "yarn workspace back",
+    "dc:dev": "docker compose up --watch --build"
   }
 }

@@ -13,11 +13,21 @@ services:
     container_name: back
     ports:
       - '3000:3000'
-    volumes:
-      - ./packages/back/src:/app/src
-      - ./packages/back/data:/app/data
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./packages/back/src
+          target: /app/src
+        - action: sync+restart
+          path: ./packages/back/libs
+          target: /app/libs
+        - action: rebuild
+          path: ./packages/back/package.json
+        - action: rebuild
+          path: ./packages\back\prisma\schema.prisma
     networks:
       - localNw
+
 
   front:
     build:
@@ -29,9 +39,18 @@ services:
       - VITE_API_URL=http://localhost:3000
     ports:
       - '8080:8080'
-    volumes:
-      - ./packages/front/src:/app/src
-      - ./packages/front/public:/app/public
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./packages/front/src
+          target: /app/src
+        - action: sync+restart
+          path: ./packages/front/public
+          target: /app/public
+        - action: rebuild
+          path: ./packages/front/package.json
+        - action: rebuild
+          path: ./packages\back\prisma\schema.prisma
     networks:
       - localNw
 

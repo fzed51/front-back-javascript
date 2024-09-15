@@ -12,10 +12,12 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
+  describe('ping', () => {
+    it('should return date and version', () => {
       const result = appController.ping();
-      expect(result).toBeDefined();
+      expect(typeof result).toBe('object');
+      expect(result).toHaveProperty('version');
+      expect(result).toHaveProperty('now');
     });
   });
 });
