@@ -8,6 +8,7 @@
   "scripts": {
     "ft": "yarn workspace front",
     "bk": "yarn workspace back",
-    "dc:dev": "docker compose up --watch --build"
+    "dc:dev": "docker compose up --watch --build",
+    "inst": "yarn && yarn bk prisma generate --no-hints"
   }
 }
